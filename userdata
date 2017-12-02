@@ -10,11 +10,11 @@ sudo cp -r jdk1.8.0_151 /usr/lib/jvm/jdk1.8.0_151  &> $TMP-1300
 
 sudo cp /home/ec2-user/pfeiffer4building/etc-sysconfig-jenkins /etc/sysconfig/jenkins &> $TMP-1400
 
-sudo service jenkins start &> $TMP-1500
-rpm --import https://pkg.jenkins.io/redhat/jenkins.io.key &> $TMP-1600
-yum install -y jenkins &> $TMP-1700
-service jenkins start &> $TMP-1800
-chkconfig jenkins on &> $TMP-1900
+sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat/jenkins.repo
+sudo rpm --import https://pkg.jenkins.io/redhat/jenkins.io.key &> $TMP-1600
+sudo yum install -y jenkins &> $TMP-1700
+sudo service jenkins start &> $TMP-1800
+sudo chkconfig jenkins on &> $TMP-1900
 sleep 30 &> $TMP-2000
 gem install rake &> $TMP-2100
 gem install haml &> $TMP-2200
