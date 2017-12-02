@@ -1,0 +1,33 @@
+cd /home/ec2-user
+
+wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u151-b12/e758a0de34e24606bca991d704f6dcbf/jdk-8u151-linux-x64.tar.gz"
+
+tar -zvxf jdk-8u151-linux-x64.tar.gz
+
+sudo cp -r jdk1.8.0_151 /usr/lib/jvm/jdk1.8.0_151
+
+sudo cp /home/ec2-user/pfeiffer4building/etc-sysconfig-jenkins /etc/sysconfig/jenkins
+
+sudo service jenkins start
+rpm --import https://pkg.jenkins.io/redhat/jenkins.io.key
+yum install -y jenkins
+service jenkins start
+chkconfig jenkins on
+sleep 30
+gem install rake
+gem install haml
+gem install minitest
+# Install the required plugins
+cd /var/lib/jenkins/plugins
+curl -O -L https://updates.jenkins-ci.org/latest/multiple-scms.hpi
+curl -O -L https://updates.jenkins-ci.org/latest/github-api.hpi
+curl -O -L https://updates.jenkins-ci.org/latest/scm-api.hpi
+curl -O -L https://updates.jenkins-ci.org/latest/git-client.hpi
+curl -O -L https://updates.jenkins-ci.org/latest/github.hpi
+curl -O -L https://updates.jenkins-ci.org/latest/git.hpi
+curl -O -L https://updates.jenkins-ci.org/latest/codedeploy.hpi
+curl -O -L https://updates.jenkins-ci.org/latest/aws-codepipeline.hpi
+curl -O -L https://updates.jenkins-ci.org/latest/rake.hpi
+chown jenkins:jenkins *.hpi
+# Restarting Jenkins
+service jenkins restart
