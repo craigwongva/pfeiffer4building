@@ -1,33 +1,35 @@
-cd /home/ec2-user
+TMP=/tmp/userdata
 
-wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u151-b12/e758a0de34e24606bca991d704f6dcbf/jdk-8u151-linux-x64.tar.gz"
+cd /home/ec2-user &> $TMP-1000
 
-tar -zvxf jdk-8u151-linux-x64.tar.gz
+wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u151-b12/e758a0de34e24606bca991d704f6dcbf/jdk-8u151-linux-x64.tar.gz" &> $TMP-1100
 
-sudo cp -r jdk1.8.0_151 /usr/lib/jvm/jdk1.8.0_151
+tar -zvxf jdk-8u151-linux-x64.tar.gz &> $TMP-1200
 
-sudo cp /home/ec2-user/pfeiffer4building/etc-sysconfig-jenkins /etc/sysconfig/jenkins
+sudo cp -r jdk1.8.0_151 /usr/lib/jvm/jdk1.8.0_151  &> $TMP-1300
 
-sudo service jenkins start
-rpm --import https://pkg.jenkins.io/redhat/jenkins.io.key
-yum install -y jenkins
-service jenkins start
-chkconfig jenkins on
-sleep 30
-gem install rake
-gem install haml
-gem install minitest
+sudo cp /home/ec2-user/pfeiffer4building/etc-sysconfig-jenkins /etc/sysconfig/jenkins &> $TMP-1400
+
+sudo service jenkins start &> $TMP-1500
+rpm --import https://pkg.jenkins.io/redhat/jenkins.io.key &> $TMP-1600
+yum install -y jenkins &> $TMP-1700
+service jenkins start &> $TMP-1800
+chkconfig jenkins on &> $TMP-1900
+sleep 30 &> $TMP-2000
+gem install rake &> $TMP-2100
+gem install haml &> $TMP-2200
+gem install minitest &> $TMP-2300
 # Install the required plugins
-cd /var/lib/jenkins/plugins
-curl -O -L https://updates.jenkins-ci.org/latest/multiple-scms.hpi
-curl -O -L https://updates.jenkins-ci.org/latest/github-api.hpi
-curl -O -L https://updates.jenkins-ci.org/latest/scm-api.hpi
-curl -O -L https://updates.jenkins-ci.org/latest/git-client.hpi
-curl -O -L https://updates.jenkins-ci.org/latest/github.hpi
-curl -O -L https://updates.jenkins-ci.org/latest/git.hpi
-curl -O -L https://updates.jenkins-ci.org/latest/codedeploy.hpi
-curl -O -L https://updates.jenkins-ci.org/latest/aws-codepipeline.hpi
-curl -O -L https://updates.jenkins-ci.org/latest/rake.hpi
-chown jenkins:jenkins *.hpi
+cd /var/lib/jenkins/plugins &> $TMP-2400
+curl -O -L https://updates.jenkins-ci.org/latest/multiple-scms.hpi &> $TMP-2500
+curl -O -L https://updates.jenkins-ci.org/latest/github-api.hpi &> $TMP-2600
+curl -O -L https://updates.jenkins-ci.org/latest/scm-api.hpi &> $TMP-2700
+curl -O -L https://updates.jenkins-ci.org/latest/git-client.hpi &> $TMP-2800
+curl -O -L https://updates.jenkins-ci.org/latest/github.hpi &> $TMP-2900
+curl -O -L https://updates.jenkins-ci.org/latest/git.hpi &> $TMP-3000
+curl -O -L https://updates.jenkins-ci.org/latest/codedeploy.hpi &> $TMP-3100
+curl -O -L https://updates.jenkins-ci.org/latest/aws-codepipeline.hpi &> $TMP-3200
+curl -O -L https://updates.jenkins-ci.org/latest/rake.hpi &> $TMP-3300
+chown jenkins:jenkins *.hpi &> $TMP-3400
 # Restarting Jenkins
-service jenkins restart
+service jenkins restart &> $TMP-3500
