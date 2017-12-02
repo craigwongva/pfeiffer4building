@@ -24,15 +24,15 @@ gem install haml &> $TMP-2200
 gem install minitest &> $TMP-2300
 # Install the required plugins
 cd /var/lib/jenkins/plugins &> $TMP-2400
-curl -O -L https://updates.jenkins-ci.org/latest/multiple-scms.hpi &> $TMP-2500
-curl -O -L https://updates.jenkins-ci.org/latest/github-api.hpi &> $TMP-2600
-curl -O -L https://updates.jenkins-ci.org/latest/scm-api.hpi &> $TMP-2700
-curl -O -L https://updates.jenkins-ci.org/latest/git-client.hpi &> $TMP-2800
-curl -O -L https://updates.jenkins-ci.org/latest/github.hpi &> $TMP-2900
-curl -O -L https://updates.jenkins-ci.org/latest/git.hpi &> $TMP-3000
-curl -O -L https://updates.jenkins-ci.org/latest/codedeploy.hpi &> $TMP-3100
-curl -O -L https://updates.jenkins-ci.org/latest/aws-codepipeline.hpi &> $TMP-3200
-curl -O -L https://updates.jenkins-ci.org/latest/rake.hpi &> $TMP-3300
-chown jenkins:jenkins *.hpi &> $TMP-3400
+sudo curl -O -L https://updates.jenkins-ci.org/latest/multiple-scms.hpi &> $TMP-2500
+sudo curl -O -L https://updates.jenkins-ci.org/latest/github-api.hpi &> $TMP-2600
+sudo curl -O -L https://updates.jenkins-ci.org/latest/scm-api.hpi &> $TMP-2700
+sudo curl -O -L https://updates.jenkins-ci.org/latest/git-client.hpi &> $TMP-2800
+sudo curl -O -L https://updates.jenkins-ci.org/latest/github.hpi &> $TMP-2900
+sudo curl -O -L https://updates.jenkins-ci.org/latest/git.hpi &> $TMP-3000
+sudo curl -O -L https://updates.jenkins-ci.org/latest/codedeploy.hpi &> $TMP-3100
+sudo curl -O -L https://updates.jenkins-ci.org/latest/aws-codepipeline.hpi &> $TMP-3200
+sudo curl -O -L https://updates.jenkins-ci.org/latest/rake.hpi &> $TMP-3300
+sudo chown jenkins:jenkins *.hpi &> $TMP-3400
 # Restarting Jenkins
-service jenkins restart &> $TMP-3500
+sudo service jenkins restart &> $TMP-3500
