@@ -14,11 +14,12 @@ sudo cp -r jdk1.8.0_151 /usr/lib/jvm/jdk1.8.0_151  &> $TMP-1300
 
 sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat/jenkins.repo
 sudo rpm --import https://pkg.jenkins.io/redhat/jenkins.io.key &> $TMP-1600
-sudo cp /home/ec2-user/pfeiffer4building/etc-sysconfig-jenkins /etc/sysconfig/jenkins &> $TMP-1650
 sudo touch /var/cache/jenkins &> $TMP-1660
 sudo touch /var/log/jenkins &> $TMP-1670
 sudo touch /var/lib/jenkins &> $TMP-1680
 sudo yum install -y jenkins &> $TMP-1700
+sudo cp /var/lib/jenkins/secrets/initialAdminPassword /tmp/ &> $TMP-1710
+sudo cp /home/ec2-user/pfeiffer4building/etc-sysconfig-jenkins /etc/sysconfig/jenkins &> $TMP-1750
 sudo service jenkins start &> $TMP-1800
 sudo chkconfig jenkins on &> $TMP-1900
 sleep 30 &> $TMP-2000
@@ -37,6 +38,5 @@ sudo curl -O -L https://updates.jenkins-ci.org/latest/codedeploy.hpi &> $TMP-310
 sudo curl -O -L https://updates.jenkins-ci.org/latest/aws-codepipeline.hpi &> $TMP-3200
 sudo curl -O -L https://updates.jenkins-ci.org/latest/rake.hpi &> $TMP-3300
 sudo chown jenkins:jenkins *.hpi &> $TMP-3400
+sudo service jenkins stop &> $TMP-3500
 /home/ec2-user/pfeiffer4building/after-start
-# Restarting Jenkins
-sudo service jenkins restart &> $TMP-3500
