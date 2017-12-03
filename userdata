@@ -35,6 +35,5 @@ sudo curl -O -L https://updates.jenkins-ci.org/latest/codedeploy.hpi &> $TMP-310
 sudo curl -O -L https://updates.jenkins-ci.org/latest/aws-codepipeline.hpi &> $TMP-3200
 sudo curl -O -L https://updates.jenkins-ci.org/latest/rake.hpi &> $TMP-3300
 sudo chown jenkins:jenkins *.hpi &> $TMP-3400
+sudo service jenkins stop &> $TMP-3500
 /home/ec2-user/pfeiffer4building/after-start
-# Restarting Jenkins
-sudo service jenkins restart &> $TMP-3500
