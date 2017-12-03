@@ -1,8 +1,11 @@
 TMP=/tmp/userdata
 
-cd /home/ec2-user &> $TMP-1000
+cd /home/ec2-user/pfeiffer4building                &> $TMP-1000
+sudo cp rc.local /etc/rc.d/rc.local                &> $TMP-1100
 
-wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u151-b12/e758a0de34e24606bca991d704f6dcbf/jdk-8u151-linux-x64.tar.gz" &> $TMP-1100
+cd /home/ec2-user &> $TMP-1120
+
+wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u151-b12/e758a0de34e24606bca991d704f6dcbf/jdk-8u151-linux-x64.tar.gz" &> $TMP-1140
 
 tar -zvxf jdk-8u151-linux-x64.tar.gz &> $TMP-1200
 
