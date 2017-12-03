@@ -11,6 +11,7 @@ sudo cp -r jdk1.8.0_151 /usr/lib/jvm/jdk1.8.0_151  &> $TMP-1300
 
 sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat/jenkins.repo
 sudo rpm --import https://pkg.jenkins.io/redhat/jenkins.io.key &> $TMP-1600
+sudo cp /etc/sysconfig/jenkins /tmp/etc-sysconfig-jenkins &> $TMP-1610
 sudo cp /home/ec2-user/pfeiffer4building/etc-sysconfig-jenkins /etc/sysconfig/jenkins &> $TMP-1650
 sudo touch /var/cache/jenkins &> $TMP-1660
 sudo touch /var/log/jenkins &> $TMP-1670
