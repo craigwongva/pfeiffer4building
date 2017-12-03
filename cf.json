@@ -316,7 +316,7 @@
                         "DeviceIndex"              : "0",
                         "GroupSet"                 : [
                             {
-                                "Ref" : "JenkinsSecurityGroup"
+                                "Ref" : "pfeiffer4building"
                             }
                         ],
                         "SubnetId"                 : {
@@ -352,7 +352,7 @@
                 ]
             }
         },
-        "JenkinsSecurityGroup" : {
+        "pfeiffer4building" : {
             "Type" : "AWS::EC2::SecurityGroup",
             "Properties" : {
                 "GroupDescription" : "Enable SSH and HTTP access from specific CIDR block",
