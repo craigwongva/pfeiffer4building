@@ -1,16 +1,43 @@
 {
     "AWSTemplateFormatVersion" : "2010-09-09",
-    "Description"              : "Jenkins Server",
+    "Description"              : "Jenkins Server: This template creates a Jenkins Server for use with AWS Code Services. **WARNING** This template creates one or more Amazon EC2 instances. You will be billed for the AWS resources used if you create a stack from this template. Copyright [2015-2016] Amazon.com, Inc. or its affiliates. All Rights Reserved. Licensed under the Apache License, Version 2.0 (the \"License\"). You may not use this file except in compliance with the License. A copy of the License is located at http://aws.amazon.com/apache2.0/ or in the \"license\" file accompanying this file. This file is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.",
     "Parameters"               : {
-  "secgrp" : {
-    "Type" : "String"
-  },
         "InstanceType" : {
             "Description" : "EC2 instance type for Jenkins Server",
             "Type"        : "String",
             "Default"     : "t2.micro",
             "AllowedValues" : [
-                "t2.micro"
+                "t1.micro",
+                "t2.micro",
+                "t2.small",
+                "t2.medium",
+                "m3.medium",
+                "m3.large",
+                "m3.xlarge",
+                "m3.2xlarge",
+                "c3.large",
+                "c3.xlarge",
+                "c3.2xlarge",
+                "c3.4xlarge",
+                "c3.8xlarge",
+                "c4.large",
+                "c4.xlarge",
+                "c4.2xlarge",
+                "c4.4xlarge",
+                "c4.8xlarge",
+                "r3.large",
+                "r3.xlarge",
+                "r3.2xlarge",
+                "r3.4xlarge",
+                "r3.8xlarge",
+                "i2.xlarge",
+                "i2.2xlarge",
+                "i2.4xlarge",
+                "i2.8xlarge",
+                "hi1.4xlarge",
+                "hs1.8xlarge",
+                "cr1.8xlarge",
+                "cc2.8xlarge"
             ],
             "ConstraintDescription" : "must be a valid EC2 instance type."
         },
@@ -39,14 +66,136 @@
     },
     "Mappings"                 : {
         "AWSInstanceType2Arch" : {
+            "t1.micro" : {
+                "Arch" : "PV64"
+            },
             "t2.micro" : {
+                "Arch" : "HVM64"
+            },
+            "t2.small" : {
+                "Arch" : "HVM64"
+            },
+            "t2.medium" : {
+                "Arch" : "HVM64"
+            },
+            "m3.medium" : {
+                "Arch" : "HVM64"
+            },
+            "m3.large"  : {
+                "Arch" : "HVM64"
+            },
+            "m3.xlarge" : {
+                "Arch" : "HVM64"
+            },
+            "m3.2xlarge" : {
+                "Arch" : "HVM64"
+            },
+            "c3.large"   : {
+                "Arch" : "HVM64"
+            },
+            "c3.xlarge"  : {
+                "Arch" : "HVM64"
+            },
+            "c3.2xlarge" : {
+                "Arch" : "HVM64"
+            },
+            "c3.4xlarge" : {
+                "Arch" : "HVM64"
+            },
+            "c3.8xlarge" : {
+                "Arch" : "HVM64"
+            },
+            "c4.large"   : {
+                "Arch" : "HVM64"
+            },
+            "c4.xlarge"  : {
+                "Arch" : "HVM64"
+            },
+            "c4.2xlarge" : {
+                "Arch" : "HVM64"
+            },
+            "c4.4xlarge" : {
+                "Arch" : "HVM64"
+            },
+            "c4.8xlarge" : {
+                "Arch" : "HVM64"
+            },
+            "r3.large"   : {
+                "Arch" : "HVM64"
+            },
+            "r3.xlarge"  : {
+                "Arch" : "HVM64"
+            },
+            "r3.2xlarge" : {
+                "Arch" : "HVM64"
+            },
+            "r3.4xlarge" : {
+                "Arch" : "HVM64"
+            },
+            "r3.8xlarge" : {
+                "Arch" : "HVM64"
+            },
+            "i2.xlarge"  : {
+                "Arch" : "HVM64"
+            },
+            "i2.2xlarge" : {
+                "Arch" : "HVM64"
+            },
+            "i2.4xlarge" : {
+                "Arch" : "HVM64"
+            },
+            "i2.8xlarge" : {
+                "Arch" : "HVM64"
+            },
+            "hi1.4xlarge" : {
+                "Arch" : "HVM64"
+            },
+            "hs1.8xlarge" : {
+                "Arch" : "HVM64"
+            },
+            "cr1.8xlarge" : {
+                "Arch" : "HVM64"
+            },
+            "cc2.8xlarge" : {
                 "Arch" : "HVM64"
             }
         },
         "AWSRegionArch2AMI"    : {
+            "us-east-1" : {
+                "PV64" : "ami-1ccae774",
+                "HVM64" : "ami-1ecae776"
+            },
             "us-west-2" : {
                 "PV64" : "ami-ff527ecf",
                 "HVM64" : "ami-e7527ed7"
+            },
+            "us-west-1" : {
+                "PV64" : "ami-d514f291",
+                "HVM64" : "ami-d114f295"
+            },
+            "eu-west-1" : {
+                "PV64" : "ami-bf0897c8",
+                "HVM64" : "ami-a10897d6"
+            },
+            "eu-central-1" : {
+                "PV64" : "ami-ac221fb1",
+                "HVM64" : "ami-a8221fb5"
+            },
+            "ap-northeast-1" : {
+                "PV64" : "ami-acd9e8fe",
+                "HVM64" : "ami-68d8e93a"
+            },
+            "ap-southeast-1" : {
+                "PV64" : "ami-27f90e27",
+                "HVM64" : "ami-cbf90ecb"
+            },
+            "ap-southeast-2" : {
+                "PV64" : "ami-ff9cecc5",
+                "HVM64" : "ami-fd9cecc7"
+            },
+            "sa-east-1"      : {
+                "PV64" : "ami-fd9925e0",
+                "HVM64" : "ami-b52890a8"
             }
         }
     },
@@ -167,7 +316,7 @@
                         "DeviceIndex"              : "0",
                         "GroupSet"                 : [
                             {
-                                "Ref" : "secgrp"
+                                "Ref" : "JenkinsSecurityGroup"
                             }
                         ],
                         "SubnetId"                 : {
@@ -181,10 +330,6 @@
                 "IamInstanceProfile" : {
                     "Ref" : "JenkinsInstanceProfile"
                 },
-    "SecurityGroupIds": [
-     { "Ref": "secgrp" }
-    ],
-    "IamInstanceProfile": "RoleForTestingRoles",
                 "UserData"           : {
                     "Fn::Base64" : {
                         "Fn::Join" : [
@@ -202,6 +347,33 @@
                     {
                         "Key" : "Name",
                         "Value" : "Jenkins Server"
+                    }
+                ]
+            }
+        },
+        "JenkinsSecurityGroup" : {
+            "Type" : "AWS::EC2::SecurityGroup",
+            "Properties" : {
+                "GroupDescription" : "Enable SSH and HTTP access from specific CIDR block",
+                "VpcId"            : {
+                    "Ref" : "VpcId"
+                },
+                "SecurityGroupIngress" : [
+                    {
+                        "IpProtocol" : "tcp",
+                        "FromPort"   : "22",
+                        "ToPort"     : "22",
+                        "CidrIp"     : {
+                            "Ref" : "YourIPRange"
+                        }
+                    },
+                    {
+                        "IpProtocol" : "tcp",
+                        "FromPort"   : "80",
+                        "ToPort"     : "80",
+                        "CidrIp"     : {
+                            "Ref" : "YourIPRange"
+                        }
                     }
                 ]
             }
