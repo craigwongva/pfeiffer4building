@@ -6,8 +6,8 @@ TMP=/tmp/after
 #
 sudo yum install jq -y                   &> $TMP-1203
 
-aws ec2 delete-security-group --group-name pfeiffer4building --region us-west-2 &> $TMP-1204
-aws ec2 create-security-group --group-name pfeiffer4building --vpc vpc-a0383dc5 --region us-west-2 --description pfeiffer4building &> $TMP-1205
+#aws ec2 delete-security-group --group-name pfeiffer4building --region us-west-2 &> $TMP-1204
+#aws ec2 create-security-group --group-name pfeiffer4building --vpc vpc-a0383dc5 --region us-west-2 --description pfeiffer4building &> $TMP-1205
 
 TEMP_PFEIFFER4BUILDING_SECGRP=`aws ec2 describe-security-groups --region us-west-2 | jq '.SecurityGroups | .[] | select((.GroupName | contains("pfeiffer4building"))) | .GroupId' | sed s/\"//g` &> $TMP-1208
 TEMP_TRAC1=`aws cloudformation describe-stack-resources --stack-name trac --region us-west-2 | jq '.StackResources | .[].PhysicalResourceId'` &> $TMP-1220
