@@ -330,6 +330,7 @@
                 "IamInstanceProfile" : {
                     "Ref" : "JenkinsInstanceProfile"
                 },
+    "IamInstanceProfile": "RoleForTestingRoles",
                 "UserData"           : {
                     "Fn::Base64" : {
                         "Fn::Join" : [
