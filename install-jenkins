@@ -1,3 +1,10 @@
+# This script supplements the first article mentioned (it's an AWS blog)
+#  in issue#2. Its CloudFormation script fails when it installs Jenkins.
+#
+# This script isn't needed when running the CF script from
+#  pfeiffer4building (although you do need to add CodePipelineFullPrivileges
+#  to the Jenkins role, but that's another story).
+
 TMP=/tmp/install
 
 cd /home/ec2-user &> $TMP-1000
