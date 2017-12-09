@@ -38,7 +38,7 @@ Resources:
               ActionTypeId:
                 Category: Build
                 Owner: Custom
-                Version: 4
+                Version: 5
                 Provider: JenkinsFri3
               Configuration:
                 ProjectName: BuildProject
