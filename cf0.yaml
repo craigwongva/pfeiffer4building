@@ -1,0 +1,34 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  MyCustomActionType:
+    Type: "AWS::CodePipeline::CustomActionType"
+    Properties:
+      Category: Build
+#You must logout and log into the Console to see this new Build Provider in CodePipeline :(
+      Provider: JenkinsFri3
+      Version: 3
+      ConfigurationProperties:
+        - Description: "my Server URL description"
+          Key: true
+          Name: "ServerURL"
+          Queryable: false
+          Required: true
+          Secret: false
+          Type: String
+        - Description: "my Project Name description"
+          Key: true
+          Name: ProjectName
+          Queryable: true
+          Required: true
+          Secret: false
+          Type: String
+      InputArtifactDetails:
+        MaximumCount: 1
+        MinimumCount: 1
+      OutputArtifactDetails:
+        MinimumCount: 1
+        MaximumCount: 1
+      Settings:
+        EntityUrlTemplate: "http://{Config:ServerURL}:8080/job/{Config:ProjectName}/"
+        ExecutionUrlTemplate: "http://{Config:ServerURL}:8080/job/{Config:ProjectName}/lastSuccessfulBuild/{ExternalExecutionId}/"
+

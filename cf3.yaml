@@ -3,45 +3,13 @@ Parameters:
   githubpassword:
     Type: String
 Resources:
-  MyCustomActionType: 
-    Type: "AWS::CodePipeline::CustomActionType"
-    Properties: 
-      Category: Build
-#You must logout and log into the Console to see this new Build Provider in CodePipeline :(
-      Provider: JenkinsFri3
-      Version: 1
-      ConfigurationProperties: 
-        - Description: "my Server URL description"
-          Key: true
-          Name: "ServerURL"
-          Queryable: false
-          Required: true
-          Secret: false
-          Type: String
-        - Description: "my Project Name description"
-          Key: true
-          Name: ProjectName
-          Queryable: true
-          Required: true
-          Secret: false
-          Type: String
-      InputArtifactDetails: 
-        MaximumCount: 1
-        MinimumCount: 1
-      OutputArtifactDetails: 
-        MinimumCount: 1
-        MaximumCount: 1
-      Settings: 
-        EntityUrlTemplate: "http://35.165.171.217:8080/job/{Config:ProjectName}/"
-        ExecutionUrlTemplate: "http://35.165.171.217:8080/job/{Config:ProjectName}/lastSuccessfulBuild/{ExternalExecutionId}/"
   Vake:
     Type: "AWS::CodePipeline::Pipeline"
-    DependsOn: MyCustomActionType
     Properties:
       ArtifactStore:
-        Type: S3 
+        Type: S3
         Location: "codepipeline-us-west-2-510060297905"
-      Name: Fri8 
+      Name: Fri8
       RoleArn: "arn:aws:iam::994238729631:role/AWS-CodePipeline-Service"
       RestartExecutionOnUpdate: true
       Stages:
@@ -54,10 +22,10 @@ Resources:
                 Version: 1
                 Provider: GitHub
               Configuration:
-                Owner: craigwongva 
-                Repo: "aws-code-deploy-linux" 
-                PollForSourceChanges: true 
-                Branch: master 
+                Owner: craigwongva
+                Repo: "aws-code-deploy-linux"
+                PollForSourceChanges: true
+                Branch: master
                 OAuthToken: !Ref githubpassword
               OutputArtifacts:
                 - Name: MyApp
@@ -67,12 +35,12 @@ Resources:
             - Name: Build
               ActionTypeId:
                 Category: Build
-                Owner: Custom 
-                Version: 1 
+                Owner: Custom
+                Version: 3
                 Provider: JenkinsFri3
               Configuration:
                 ProjectName: BuildProject
-                ServerURL: dummy
+                ServerURL: 35.165.171.217
               InputArtifacts:
                 - Name: MyApp
               OutputArtifacts:
@@ -92,4 +60,3 @@ Resources:
               InputArtifacts:
                 - Name: MyAppBuild
               RunOrder: 1
-
