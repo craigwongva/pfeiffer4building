@@ -2,6 +2,8 @@ AWSTemplateFormatVersion: '2010-09-09'
 Parameters:
   githubpassword:
     Type: String
+  jenkinsurl:
+    Type: String
 Resources:
   Vake:
     Type: "AWS::CodePipeline::Pipeline"
@@ -40,7 +42,7 @@ Resources:
                 Provider: JenkinsFri3
               Configuration:
                 ProjectName: BuildProject
-                ServerURL: 35.165.171.217
+                ServerURL: !Ref jenkinsurl
               InputArtifacts:
                 - Name: MyApp
               OutputArtifacts:
