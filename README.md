@@ -3,5 +3,5 @@
 3. Get the Jenkins password from /tmp/init\*.
 4. Log into the Jenkins server.
 5. Install the AWS CodePipeline plugin.
-6. Create a freestyle job named 'BuildProject', using AWS CodePipeline plugin set for us-west-2, `JenkinsFri3` (that's the Custom Action Provider) version 3.
+6. Create a freestyle job named 'BuildProject', using AWS CodePipeline plugin set for us-west-2, `JenkinsFri3` (that's the Custom Action Provider) version 3 (or at least whatever version the Custom Action Provider in step one above defined).
 7. Build a CodePipeline via cf3.yaml.
