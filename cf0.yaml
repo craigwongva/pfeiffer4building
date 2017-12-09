@@ -6,7 +6,7 @@ Resources:
       Category: Build
 #You must logout and log into the Console to see this new Build Provider in CodePipeline :(
       Provider: JenkinsFri3
-      Version: 3
+      Version: 4
       ConfigurationProperties:
         - Description: "my Server URL description"
           Key: true
