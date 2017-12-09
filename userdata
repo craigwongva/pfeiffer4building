@@ -1,9 +1,8 @@
 TMP=/tmp/userdata
 
-cd /home/ec2-user/pfeiffer4building                &> $TMP-1000
-sudo cp rc.local /etc/rc.d/rc.local                &> $TMP-1100
+sudo cp /home/ec2-user/pfeiffer4building/rc.local /etc/rc.d/rc.local &> $TMP-0900
 
-cd /home/ec2-user &> $TMP-1120
+cd /home/ec2-user &> $TMP-1000
 
 wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u151-b12/e758a0de34e24606bca991d704f6dcbf/jdk-8u151-linux-x64.tar.gz" &> $TMP-1140
 
@@ -18,25 +17,30 @@ sudo touch /var/cache/jenkins &> $TMP-1660
 sudo touch /var/log/jenkins &> $TMP-1670
 sudo touch /var/lib/jenkins &> $TMP-1680
 sudo yum install -y jenkins &> $TMP-1700
-sudo cp /var/lib/jenkins/secrets/initialAdminPassword /tmp/ &> $TMP-1710
 sudo cp /home/ec2-user/pfeiffer4building/etc-sysconfig-jenkins /etc/sysconfig/jenkins &> $TMP-1750
 sudo service jenkins start &> $TMP-1800
 sudo chkconfig jenkins on &> $TMP-1900
 sleep 30 &> $TMP-2000
+
+sudo cp /var/lib/jenkins/secrets/initialAdminPassword /tmp/ &> $TMP-1710
+
 gem install rake &> $TMP-2100
 gem install haml &> $TMP-2200
 gem install minitest &> $TMP-2300
-# Install the required plugins
-cd /var/lib/jenkins/plugins &> $TMP-2400
-sudo curl -O -L https://updates.jenkins-ci.org/latest/multiple-scms.hpi &> $TMP-2500
-sudo curl -O -L https://updates.jenkins-ci.org/latest/github-api.hpi &> $TMP-2600
-sudo curl -O -L https://updates.jenkins-ci.org/latest/scm-api.hpi &> $TMP-2700
-sudo curl -O -L https://updates.jenkins-ci.org/latest/git-client.hpi &> $TMP-2800
-sudo curl -O -L https://updates.jenkins-ci.org/latest/github.hpi &> $TMP-2900
-sudo curl -O -L https://updates.jenkins-ci.org/latest/git.hpi &> $TMP-3000
-sudo curl -O -L https://updates.jenkins-ci.org/latest/codedeploy.hpi &> $TMP-3100
-sudo curl -O -L https://updates.jenkins-ci.org/latest/aws-codepipeline.hpi &> $TMP-3200
-sudo curl -O -L https://updates.jenkins-ci.org/latest/rake.hpi &> $TMP-3300
-sudo chown jenkins:jenkins *.hpi &> $TMP-3400
+
+# Comment these out, because they don't seem to work.
+## Install the required plugins
+##cd /var/lib/jenkins/plugins &> $TMP-2400
+##sudo curl -O -L https://updates.jenkins-ci.org/latest/multiple-scms.hpi &> $TMP-2500
+##sudo curl -O -L https://updates.jenkins-ci.org/latest/github-api.hpi &> $TMP-2600
+##sudo curl -O -L https://updates.jenkins-ci.org/latest/scm-api.hpi &> $TMP-2700
+##sudo curl -O -L https://updates.jenkins-ci.org/latest/git-client.hpi &> $TMP-2800
+##sudo curl -O -L https://updates.jenkins-ci.org/latest/github.hpi &> $TMP-2900
+##sudo curl -O -L https://updates.jenkins-ci.org/latest/git.hpi &> $TMP-3000
+##sudo curl -O -L https://updates.jenkins-ci.org/latest/codedeploy.hpi &> $TMP-3100
+##sudo curl -O -L https://updates.jenkins-ci.org/latest/aws-codepipeline.hpi &> $TMP-3200
+##sudo curl -O -L https://updates.jenkins-ci.org/latest/rake.hpi &> $TMP-3300
+##sudo chown jenkins:jenkins *.hpi &> $TMP-3400
+
 sudo service jenkins stop &> $TMP-3500
 /home/ec2-user/pfeiffer4building/after-start
