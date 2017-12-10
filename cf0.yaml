@@ -1,12 +1,15 @@
 AWSTemplateFormatVersion: '2010-09-09'
+Parameters:
+  provider:
+    Type: String
 Resources:
   MyCustomActionType:
     Type: "AWS::CodePipeline::CustomActionType"
     Properties:
       Category: Build
 #You must logout and log into the Console to see this new Build Provider in CodePipeline :(
-      Provider: JenkinsFri3
-      Version: 5
+      Provider: !Ref provider
+      Version: 1
       ConfigurationProperties:
         - Description: "my Server URL description"
           Key: true

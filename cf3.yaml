@@ -4,6 +4,8 @@ Parameters:
     Type: String
   jenkinsurl:
     Type: String
+  provider:
+    Type: String
 Resources:
   Vake:
     Type: "AWS::CodePipeline::Pipeline"
@@ -38,8 +40,8 @@ Resources:
               ActionTypeId:
                 Category: Build
                 Owner: Custom
-                Version: 5
-                Provider: JenkinsFri3
+                Version: 1
+                Provider: !Ref provider
               Configuration:
                 ProjectName: BuildProject
                 ServerURL: !Ref jenkinsurl
