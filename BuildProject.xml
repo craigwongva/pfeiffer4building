@@ -1,0 +1,41 @@
+<project>
+<description/>
+<keepDependencies>false</keepDependencies>
+<properties/>
+<scm class="com.amazonaws.codepipeline.jenkinsplugin.AWSCodePipelineSCM" plugin="aws-codepipeline@0.33">
+<clearWorkspace>true</clearWorkspace>
+<projectName>BuildProject</projectName>
+<actionTypeCategory>Build</actionTypeCategory>
+<actionTypeProvider>CHANGETHISPROVIDER</actionTypeProvider>
+<actionTypeVersion>1</actionTypeVersion>
+<region>us-east-1</region>
+<awsAccessKey/>
+<awsSecretKey/>
+<proxyHost/>
+<proxyPort>0</proxyPort>
+<awsClientFactory/>
+</scm>
+<canRoam>true</canRoam>
+<disabled>false</disabled>
+<blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+<blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+<triggers/>
+<concurrentBuild>false</concurrentBuild>
+<builders>
+<hudson.tasks.Shell>
+<command>echo "Here is the build shell."</command>
+</hudson.tasks.Shell>
+</builders>
+<publishers>
+<com.amazonaws.codepipeline.jenkinsplugin.AWSCodePipelinePublisher plugin="aws-codepipeline@0.33">
+<outputArtifacts>
+<com.amazonaws.codepipeline.jenkinsplugin.OutputArtifact>
+<location/>
+<artifactName/>
+</com.amazonaws.codepipeline.jenkinsplugin.OutputArtifact>
+</outputArtifacts>
+<awsClientFactory/>
+</com.amazonaws.codepipeline.jenkinsplugin.AWSCodePipelinePublisher>
+</publishers>
+<buildWrappers/>
+</project>
