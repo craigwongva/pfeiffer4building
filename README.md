@@ -1,6 +1,6 @@
 1. Run pfeiffer4gettingstarted/cf.json. This will create a CodePipeline called OklahomaPipeline with two green stages.
 ```
-[ec2-user@ip-172-31-21-161 pfeiffer4gettingstarted]$ aws cloudformation create-stack --stack-name pfeiffer4gettingstarted --capabilities CAPABILITY_NAMED_IAM --template-body file://cf.yaml --region us-west-2 --parameters ParameterKey=githubpassword,ParameterValue=edbd3479f3c25a6625164bb36369474e3a0b9ddf
+[ec2-user@ip-172-31-21-161 pfeiffer4gettingstarted]$ aws cloudformation create-stack --stack-name pfeiffer4gettingstarted --capabilities CAPABILITY_NAMED_IAM --template-body file://cf.yaml --region us-west-2 --parameters ParameterKey=githubpassword,ParameterValue=REDACTED
 ```
 
 2. Build a Custom Action Provider via cf0.json. This is run once and set, or else you have to continually update its version number.
