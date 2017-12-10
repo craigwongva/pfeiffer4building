@@ -17,7 +17,6 @@ aws cloudformation create-stack --stack-name pfeiffer4building0 --template-body 
 
 12/10/17: The above sequence took me 32 minutes.
 
-
 cd /var/lib/jenkins/plugins
 sudo curl -O -L https://updates.jenkins-ci.org/latest/aws-codepipeline.hpi
 sudo chown jenkins:jenkins *.hpi
