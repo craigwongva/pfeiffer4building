@@ -9,7 +9,7 @@ aws cloudformation create-stack --stack-name pfeiffer4building0 --template-body 
 ```
 3. Build a Jenkins server instance via cf1.json.
 ```
-[ec2-user@ip-172-31-21-161 pfeiffer4building]$ aws cloudformation create-stack --stack-name pfeiffer4building1 --template-body file://cf1.json --region us-west-2 --parameters ParameterKey=InstanceType,ParameterValue="t2.micro" ParameterKey=KeyName,ParameterValue=oregonkeypair ParameterKey=VpcId,ParameterValue="vpc-a0383dc5" ParameterKey=VPCSubnet,ParameterValue="subnet-2496d37d" ParameterKey=YourIPRange,ParameterValue="101.102.103.104/32" --capabilities CAPABILITY_NAMED_IAM
+[ec2-user@ip-172-31-21-161 pfeiffer4building]$ aws cloudformation create-stack --stack-name pfeiffer4building1 --template-body file://cf1.json --region us-west-2 --parameters ParameterKey=InstanceType,ParameterValue="t2.micro" ParameterKey=KeyName,ParameterValue=oregonkeypair ParameterKey=VpcId,ParameterValue="vpc-a0383dc5" ParameterKey=VPCSubnet,ParameterValue="subnet-2496d37d" ParameterKey=YourIPRange,ParameterValue="101.102.103.104/32" ParameterKey=provider,ParameterValue=sun1528 --capabilities CAPABILITY_NAMED_IAM
 ```
 4. Get the Jenkins password from /tmp/init\*.
 5. Log into the Jenkins server.
