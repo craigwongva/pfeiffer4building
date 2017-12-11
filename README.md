@@ -26,3 +26,5 @@ aws cloudformation create-stack --stack-name pfeiffer4building3 --template-body 
           added install of Jenkins AWS CodeDeploy plugin
           added install of BuildProject
 
+Here please explain why REDACTED is even necessary.
+Make these repos private.
