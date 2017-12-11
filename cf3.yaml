@@ -4,8 +4,8 @@ Parameters:
     Type: String
   jenkinsurl:
     Type: String
-  provider:
-    Type: String
+#  provider:
+#    Type: String
 Resources:
   Vake:
     Type: "AWS::CodePipeline::Pipeline"
@@ -41,7 +41,8 @@ Resources:
                 Category: Build
                 Owner: Custom
                 Version: 1
-                Provider: !Ref provider
+#                Provider: !Ref provider
+                Provider: !ImportValue pfeiffer4building0-provider
               Configuration:
                 ProjectName: BuildProject
                 ServerURL: !Ref jenkinsurl

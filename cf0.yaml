@@ -34,4 +34,10 @@ Resources:
       Settings:
         EntityUrlTemplate: "http://{Config:ServerURL}:8080/job/{Config:ProjectName}/"
         ExecutionUrlTemplate: "http://{Config:ServerURL}:8080/job/{Config:ProjectName}/lastSuccessfulBuild/{ExternalExecutionId}/"
+Outputs:
+  StackProvider:
+    Description: The Provider name input parm value
+    Value: !Ref provider
+    Export:
+      Name: !Sub "${AWS::StackName}-provider"
 
