@@ -3,7 +3,7 @@
 [ec2-user@ip-172-31-21-161 pfeiffer4gettingstarted]$ aws cloudformation create-stack --stack-name pfeiffer4gettingstarted --capabilities CAPABILITY_NAMED_IAM --template-body file://cf.yaml --region us-west-2 --parameters ParameterKey=githubpassword,ParameterValue=REDACTED
 ```
 
-2. Build a Custom Action Provider via cf0.json. This is run once and set, or else you have to continually update its version number.
+2. Build a Custom Action Provider via cf0.json. 
 ```
 aws cloudformation create-stack --stack-name pfeiffer4building0 --template-body file://cf0.yaml --region us-west-2 --parameters ParameterKey=provider,ParameterValue=sun1528
 ```
@@ -14,10 +14,15 @@ aws cloudformation create-stack --stack-name pfeiffer4building0 --template-body 
 4. Get the Jenkins password from /tmp/init\*.
 5. Log into the Jenkins server.
 6. Install the AWS CodePipeline plugin.
+7. Build a CodePipeline via cf3.yaml.
+
+```
+aws cloudformation create-stack --stack-name pfeiffer4building3 --template-body file://cf3.yaml --region us-west-2 --parameters ParameterKey=jenkinsurl,ParameterValue=34.216.165.14 ParameterKey=provider,ParameterValue=sun1528 ParameterKey=githubpassword,ParameterValue=REDACTED
+
+```
 
 12/10/17: The above sequence took me 32 minutes.
-
-cd /var/lib/jenkins/plugins
-sudo curl -O -L https://updates.jenkins-ci.org/latest/aws-codepipeline.hpi
-sudo chown jenkins:jenkins *.hpi
+12/11/17: added parm for CodePipeline Action Provider (e.g. sun1528) used by cf0.yaml and cf3.yaml
+          added install of Jenkins AWS CodeDeploy plugin
+          added install of BuildProject
 
