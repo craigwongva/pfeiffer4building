@@ -46,6 +46,7 @@ cd /var/lib/jenkins/plugins &> $TMP-2400
 sudo curl -O -L https://updates.jenkins-ci.org/latest/aws-codepipeline.hpi &> $TMP-2500
 sudo chown jenkins:jenkins *.hpi &> $TMP-3400
 
+cd /home/ec2-user/pfeiffer4building &> $TMP-3410
 wget localhost:8080/jnlpJars/jenkins-cli.jar &> $TMP-3420
 
 /usr/lib/jvm/jdk1.8.0_151/bin/java -jar jenkins-cli.jar -auth admin:`sudo cat /tmp/initialAdminPassword` -s http://localhost:8080 create-job BuildProject < BuildProject.xml &> $TMP-3450
