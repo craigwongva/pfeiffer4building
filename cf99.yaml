@@ -1,34 +1,37 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Parameters:
-#  githubpassword:
-#    Type: String
+  githubpassword:
+    Type: String
   provider:
     Type: String
-#  InstanceType:
-#    Description: "EC2 instance type for Jenkins Server"
-#    Type: String
-#    Default: "t2.micro"
-#    AllowedValues:
-#      - "t2.micro"
-#    ConstraintDescription: "must be a valid EC2 instance type."
-#  KeyName:
-#    Description: "The EC2 Key Pair to allow SSH access to EC2 instances"
-#    Type: "AWS::EC2::KeyPair::KeyName"
-#    ConstraintDescription: "must be the name of an existing EC2 KeyPair."
-#  VpcId: 
-#    Description: "The VPC Id where the EC2 instances will be launched."
-#    Type: "AWS::EC2::VPC::Id"
-#    ConstraintDescription: "must be the name of an existing VPC."
-#  YourIPRange:
-#    Description: "CIDR block of the network from where you will connect to the Jenkins server using HTTP and SSH"
-#    Type: String
-#    MinLength: 9
-#    MaxLength: 18
-#    AllowedPattern: "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})"
-#    ConstraintDescription: "must be a valid IP CIDR range of the form x.x.x.x/x."
-#  VPCSubnet:
-#    Description: "Select a subnet id for the Jenkins Server"
-#    Type: "AWS::EC2::Subnet::Id"
+  InstanceType:
+    Description: "EC2 instance type for Jenkins Server"
+    Type: String
+    Default: "t2.micro"
+    AllowedValues:
+      - "t2.micro"
+    ConstraintDescription: "must be a valid EC2 instance type."
+  KeyName:
+    Description: "The EC2 Key Pair to allow SSH access to EC2 instances"
+    Type: "AWS::EC2::KeyPair::KeyName"
+    ConstraintDescription: "must be the name of an existing EC2 KeyPair."
+  VpcId: 
+    Description: "The VPC Id where the EC2 instances will be launched."
+    Type: "AWS::EC2::VPC::Id"
+    ConstraintDescription: "must be the name of an existing VPC."
+    Default: "vpc-a0383dc5"
+  YourIPRange:
+    Description: "CIDR block of the network from where you will connect to the Jenkins server using HTTP and SSH"
+    Type: String
+    MinLength: 9
+    MaxLength: 18
+    AllowedPattern: "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})"
+    ConstraintDescription: "must be a valid IP CIDR range of the form x.x.x.x/x."
+    Default: "11.12.13.14/32"
+  VPCSubnet:
+    Description: "Select a subnet id for the Jenkins Server"
+    Type: "AWS::EC2::Subnet::Id"
+    Default: "subnet-2496d37d"
 Resources:
   stack0:
     Type: "AWS::CloudFormation::Stack"
@@ -36,3 +39,20 @@ Resources:
       TemplateURL: https://s3.amazonaws.com/redf4rth-pfeiffer4building/cf0.yaml
       Parameters:
         provider: !Ref provider
+  stack1:
+    Type: "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: https://s3.amazonaws.com/redf4rth-pfeiffer4building/cf1.json
+      Parameters:
+        provider: !Ref provider
+        InstanceType: !Ref InstanceType
+        KeyName: !Ref KeyName
+        VpcId: !Ref VpcId
+        YourIPRange: !Ref YourIPRange
+        VPCSubnet: !Ref VPCSubnet
+  stack3:
+    Type: "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: https://s3.amazonaws.com/redf4rth-pfeiffer4building/cf3.yaml
+      Parameters:
+        githubpassword: !Ref githubpassword
