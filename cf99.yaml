@@ -44,7 +44,6 @@ Resources:
     Properties:
       TemplateURL: https://s3.amazonaws.com/redf4rth-pfeiffer4building/cf1.json
       Parameters:
-        provider: !Ref provider
         InstanceType: !Ref InstanceType
         KeyName: !Ref KeyName
         VpcId: !Ref VpcId

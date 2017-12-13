@@ -21,6 +21,8 @@ aws cloudformation create-stack --stack-name pfeiffer4building3 --template-body 
 
 ```
 
+aws cloudformation create-stack --stack-name pfeiffer499 --template-body file://cf99.yaml --region us-west-2 --capabilities CAPABILITY_NAMED_IAM --parameters ParameterKey=provider,ParameterValue=wed0656 ParameterKey=KeyName,ParameterValue=REDACTED ParameterKey=githubpassword,ParameterValue=REDACTED
+
 12/10/17: The above sequence took me 32 minutes.
 12/11/17: added parm for CodePipeline Action Provider (e.g. sun1528) used by cf0.yaml and cf3.yaml
           added install of Jenkins AWS CodeDeploy plugin
