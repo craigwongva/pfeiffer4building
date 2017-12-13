@@ -39,5 +39,6 @@ Outputs:
     Description: The Provider name input parm value
     Value: !Ref provider
     Export:
-      Name: !Sub "${AWS::StackName}-provider"
+#      Name: !Sub "${AWS::StackName}-provider"
+      Name: !Sub "pfeiffer4building0-provider"
 
