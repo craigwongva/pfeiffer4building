@@ -39,19 +39,25 @@ Resources:
       TemplateURL: https://s3.amazonaws.com/redf4rth-pfeiffer4building/cf0.yaml
       Parameters:
         provider: !Ref provider
+
   stack1:
     Type: "AWS::CloudFormation::Stack"
     Properties:
       TemplateURL: https://s3.amazonaws.com/redf4rth-pfeiffer4building/cf1.json
       Parameters:
+#        provider: Fn::GetAtt: [ stack0, Outputs.StackProvider ]
+        provider: !GetAtt stack0.Outputs.StackProvider
         InstanceType: !Ref InstanceType
         KeyName: !Ref KeyName
         VpcId: !Ref VpcId
         YourIPRange: !Ref YourIPRange
         VPCSubnet: !Ref VPCSubnet
+
   stack3:
     Type: "AWS::CloudFormation::Stack"
     Properties:
       TemplateURL: https://s3.amazonaws.com/redf4rth-pfeiffer4building/cf3.yaml
       Parameters:
         githubpassword: !Ref githubpassword
+        provider: !GetAtt stack0.Outputs.StackProvider
+        jenkinsurl: !GetAtt stack1.Outputs.PublicIp

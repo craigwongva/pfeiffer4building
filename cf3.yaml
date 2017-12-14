@@ -2,10 +2,10 @@ AWSTemplateFormatVersion: '2010-09-09'
 Parameters:
   githubpassword:
     Type: String
-#  jenkinsurl:
-#    Type: String
-#  provider:
-#    Type: String
+  jenkinsurl:
+    Type: String
+  provider:
+    Type: String
 Resources:
   Vake:
     Type: "AWS::CodePipeline::Pipeline"
@@ -41,12 +41,12 @@ Resources:
                 Category: Build
                 Owner: Custom
                 Version: 1
-#                Provider: !Ref provider
-                Provider: !ImportValue pfeiffer4building0-provider
+                Provider: !Ref provider
+#                Provider: !ImportValue pfeiffer4building0-provider
               Configuration:
                 ProjectName: BuildProject
-#                ServerURL: !Ref jenkinsurl
-                ServerURL: !ImportValue pfeiffer4building1-PublicIp
+                ServerURL: !Ref jenkinsurl
+#                ServerURL: !ImportValue pfeiffer4building1-PublicIp
               InputArtifacts:
                 - Name: MyApp
               OutputArtifacts:
