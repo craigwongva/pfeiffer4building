@@ -2,6 +2,7 @@
 ```
 [ec2-user@ip-172-31-21-161 pfeiffer4gettingstarted]$ aws cloudformation create-stack --stack-name pfeiffer4gettingstarted --capabilities CAPABILITY_NAMED_IAM --template-body file://cf.yaml --region us-west-2 --parameters ParameterKey=githubpassword,ParameterValue=REDACTED
 ```
+If this stack has existed for a while, ensure that the EC2 instance is started before running the below steps. The EC2 instance is tagged "Dev4" and is sought/used by the below steps.
 
 2. Build a Custom Action Provider via cf0.json. 
 ```
