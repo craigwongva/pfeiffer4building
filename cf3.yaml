@@ -1,5 +1,7 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Parameters:
+  applicationname:
+    Type: String
   githubpassword:
     Type: String
   jenkinsurl:
@@ -7,13 +9,13 @@ Parameters:
   provider:
     Type: String
 Resources:
-  Vake:
+  pfeiffer4build:
     Type: "AWS::CodePipeline::Pipeline"
     Properties:
       ArtifactStore:
         Type: S3
         Location: "codepipeline-us-west-2-510060297905"
-      Name: Fri8
+      Name: pfeiffer4building
       RoleArn: "arn:aws:iam::994238729631:role/AWS-CodePipeline-Service"
       RestartExecutionOnUpdate: true
       Stages:
@@ -61,7 +63,7 @@ Resources:
                 Version: 1
                 Provider: CodeDeploy
               Configuration:
-                ApplicationName: Demo4App
+                ApplicationName: !Ref applicationname
                 DeploymentGroupName: DemoAppInstances
               InputArtifacts:
                 - Name: MyAppBuild

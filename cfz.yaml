@@ -1,5 +1,7 @@
+#This template is derived from pfeiffer4gettingstarted,
+# but it removes the last step which creates a CodePipeline.
 #This template creates a CodePipeline.
-# In its Staging stage, it creates a CodeDeploy.
+# In its Staging stage, it uses a CodeDeploy.
 AWSTemplateFormatVersion: '2010-09-09'
 Parameters:
   githubpassword:
@@ -67,21 +69,11 @@ Resources:
       KeyName: oregonkeypair
       SecurityGroupIds:
       - !Ref 4c
-      UserData:
-        Fn::Base64: !Sub |
-          #!/bin/bash
-          cd /home/ec2-user/
-          aws s3 cp 's3://aws-codedeploy-us-east-1/latest/codedeploy-agent.noarch.rpm' . --region us-east-1
-          yum -y install codedeploy-agent.noarch.rpm
       InstanceType: t2.micro
       ImageId: ami-32d8124a
       Tags:
-        -
-          Key: Name
+        - Key: Name
           Value: Dev4
-#          yum install -y git
-#          sudo -u ec2-user bash -c 'cd /home/ec2-user; git clone https://github.com/craigwongva/pfeiffer4gettingstarted.git'
-#          sudo -u ec2-user bash -c '/home/ec2-user/pfeiffer4gettingstarted/userdata'
   myCodeDeployApp:
     Type: "AWS::CodeDeploy::Application"
     Properties:
@@ -99,48 +91,49 @@ Resources:
         Value: Dev4
         Type: KEY_AND_VALUE
       ServiceRoleArn: "arn:aws:iam::994238729631:role/CD4ServiceRole"
-  fridaypipeline:
-    Type: "AWS::CodePipeline::Pipeline"
-    Properties:
-      ArtifactStore:
-        Type: S3
-        Location: codepipeline-us-west-2-510060297905
-      Name: OklahomaPipeline
-      RestartExecutionOnUpdate: false
-      RoleArn: "arn:aws:iam::994238729631:role/AWS-CodePipeline-Service"
-      Stages:
-        - Name: Source
-          Actions:
-            - Name: Source
-              ActionTypeId:
-                Category: Source
-                Owner: ThirdParty
-                Version: 1
-                Provider: GitHub
-              OutputArtifacts:
-                - Name: MyApp
-              Configuration:
-                Owner: craigwongva
-                Repo: aws-code-deploy-linux
-                PollForSourceChanges: true
-                Branch: master
-                OAuthToken: !Ref githubpassword
-              RunOrder: 1
-        - Name: Staging
-          Actions:
-            - ActionTypeId:
-                Category: Deploy
-                Owner: AWS
-                Version: 1
-                Provider: CodeDeploy
-              Configuration:
-                ApplicationName: !Ref applicationname
-                DeploymentGroupName: DemoAppInstances
-              InputArtifacts:
-                - Name: MyApp
-              Name: DemoAppInstances
-              RunOrder: 1
-#
+#  fridaypipeline:
+#    Type: "AWS::CodePipeline::Pipeline"
+#    Properties:
+#      ArtifactStore:
+#        Type: S3
+#        Location: codepipeline-us-west-2-510060297905
+#      Name: OklahomaPipeline
+#      RestartExecutionOnUpdate: false
+#      RoleArn: "arn:aws:iam::994238729631:role/AWS-CodePipeline-Service"
+#      Stages:
+#        - Name: Source
+#          Actions:
+#            - Name: Source
+#              ActionTypeId:
+#                Category: Source
+#                Owner: ThirdParty
+#                Version: 1
+#                Provider: GitHub
+#              OutputArtifacts:
+#                - Name: MyApp
+#              Configuration:
+#                Owner: craigwongva
+#                Repo: aws-code-deploy-linux
+#                PollForSourceChanges: true
+#                Branch: master
+#                OAuthToken: !Ref githubpassword
+#              RunOrder: 1
+#        - Name: Staging
+#          Actions:
+#            - ActionTypeId:
+#                Category: Deploy
+#                Owner: AWS
+#                Version: 1
+#                Provider: CodeDeploy
+#              Configuration:
+#                ApplicationName: !Ref applicationname
+#                DeploymentGroupName: DemoAppInstances
+#              InputArtifacts:
+#                - Name: MyApp
+#              Name: DemoAppInstances
+#              RunOrder: 1
+
+
 # The roleArn was created manually on the Console
 #  in the CodePipeline service.
 
