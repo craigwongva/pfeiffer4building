@@ -35,13 +35,13 @@ Parameters:
     Type: "AWS::EC2::Subnet::Id"
     Default: "subnet-2496d37d"
 Resources:
-  stackz:
-    Type: "AWS::CloudFormation::Stack"
-    Properties:
-      TemplateURL: https://s3.amazonaws.com/redf4rth-pfeiffer4building/cfz.yaml
-      Parameters:
-        githubpassword: !Ref githubpassword
-        applicationname: !Ref applicationname
+#  stackz:
+#    Type: "AWS::CloudFormation::Stack"
+#    Properties:
+#      TemplateURL: https://s3.amazonaws.com/redf4rth-pfeiffer4building/cfz.yaml
+#      Parameters:
+#        githubpassword: !Ref githubpassword
+#        applicationname: !Ref applicationname
 
   stack0:
     Type: "AWS::CloudFormation::Stack"
