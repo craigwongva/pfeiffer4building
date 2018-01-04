@@ -68,6 +68,7 @@ Resources:
     Properties:
       TemplateURL: https://s3.amazonaws.com/redf4rth-pfeiffer4building/cf3.yaml
       Parameters:
+        applicationname: !Ref applicationname
         githubpassword: !Ref githubpassword
         provider: !GetAtt stack0.Outputs.StackProvider
         jenkinsurl: !GetAtt stack1.Outputs.PublicIp
