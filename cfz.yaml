@@ -91,47 +91,47 @@ Resources:
         Value: Dev4
         Type: KEY_AND_VALUE
       ServiceRoleArn: "arn:aws:iam::994238729631:role/CD4ServiceRole"
-#  fridaypipeline:
-#    Type: "AWS::CodePipeline::Pipeline"
-#    Properties:
-#      ArtifactStore:
-#        Type: S3
-#        Location: codepipeline-us-west-2-510060297905
-#      Name: OklahomaPipeline
-#      RestartExecutionOnUpdate: false
-#      RoleArn: "arn:aws:iam::994238729631:role/AWS-CodePipeline-Service"
-#      Stages:
-#        - Name: Source
-#          Actions:
-#            - Name: Source
-#              ActionTypeId:
-#                Category: Source
-#                Owner: ThirdParty
-#                Version: 1
-#                Provider: GitHub
-#              OutputArtifacts:
-#                - Name: MyApp
-#              Configuration:
-#                Owner: craigwongva
-#                Repo: aws-code-deploy-linux
-#                PollForSourceChanges: true
-#                Branch: master
-#                OAuthToken: !Ref githubpassword
-#              RunOrder: 1
-#        - Name: Staging
-#          Actions:
-#            - ActionTypeId:
-#                Category: Deploy
-#                Owner: AWS
-#                Version: 1
-#                Provider: CodeDeploy
-#              Configuration:
-#                ApplicationName: !Ref applicationname
-#                DeploymentGroupName: DemoAppInstances
-#              InputArtifacts:
-#                - Name: MyApp
-#              Name: DemoAppInstances
-#              RunOrder: 1
+  OKpipeline:
+    Type: "AWS::CodePipeline::Pipeline"
+    Properties:
+      ArtifactStore:
+        Type: S3
+        Location: codepipeline-us-west-2-510060297905
+      Name: OklahomaPipeline
+      RestartExecutionOnUpdate: false
+      RoleArn: "arn:aws:iam::994238729631:role/AWS-CodePipeline-Service"
+      Stages:
+        - Name: Source
+          Actions:
+            - Name: Source
+              ActionTypeId:
+                Category: Source
+                Owner: ThirdParty
+                Version: 1
+                Provider: GitHub
+              OutputArtifacts:
+                - Name: MyApp
+              Configuration:
+                Owner: craigwongva
+                Repo: aws-code-deploy-linux
+                PollForSourceChanges: true
+                Branch: master
+                OAuthToken: !Ref githubpassword
+              RunOrder: 1
+        - Name: Staging
+          Actions:
+            - ActionTypeId:
+                Category: Deploy
+                Owner: AWS
+                Version: 1
+                Provider: CodeDeploy
+              Configuration:
+                ApplicationName: !Ref applicationname
+                DeploymentGroupName: DemoAppInstances
+              InputArtifacts:
+                - Name: MyApp
+              Name: DemoAppInstances
+              RunOrder: 1
 
 
 # The roleArn was created manually on the Console
